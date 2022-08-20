@@ -1,0 +1,35 @@
+Moralis.Cloud.define("getUserItems", async (request) => {
+
+    const query = new Moralis.Query("EthTokenBalance");
+    query.equalTo("contract_type", "ERC1155");
+    query.containedIn("owner_of", request.user.attributes.accounts);
+    const queryResults = await query.find();
+    const results = [];
+    for (let i = 0; i < queryResults.length; ++i) {
+      results.push({
+        "token_object_id": queryResults[i].id,
+        "token_id": queryResults[i].attributes.token_id,
+        "token_address": queryResults[i].attributes.token_address,
+        "symbol": queryResults[i].attributes.symbol,
+        "token_uri": queryResults[i].attributes.token_uri,
+      });
+    }
+    return results;
+});
+
+Moralis.Cloud.beforeSave("getItemsForSale", async (request) => {  
+    const query = new Moralis.Query("EthNFTTokenOwners");
+    query.equalTo("token_address", request.object.get('tokenAddress'));
+    query.equalTo("token_id", request.object.get('tokenId'));
+    const object = await query.first();
+    if (object){
+        const owner = object.attributes.owner_of;
+      const userQuery = new Moralis.Query(Moralis.User);
+        userQuery.equalTo("accounts", owner);
+      const userObject = await userQuery.first({useMasterKey:true});
+      if (userObject){
+          request.object.set('user', userObject);
+      }
+      request.object.set('token', object);
+    }
+});

@@ -5,7 +5,7 @@ require("jquery")
 var serverUrl = "https://hz0syusp3f7e.usemoralis.com:2053/server";
 var appId = "6uPOE7DpOVgMCqJH8vPWwKarQEU7qo2WLBUFky0k";
 var currentChain;
-const nftContractAddress = "0x804Aa31B21716d59Cf9209C8256A7263096E3218";
+const nftContractAddress = "0x25D259D4070aD1e2b645a35626dCE39575f25536";
 const marketContractAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138";
 Moralis.start({ serverUrl, appId});
 
@@ -300,7 +300,7 @@ window.mint_nft = async function(metadataURI) {
 		"type": "function"
 	},];
     const options = {
-    contractAddress: "0x804Aa31B21716d59Cf9209C8256A7263096E3218",
+    contractAddress: "0x25D259D4070aD1e2b645a35626dCE39575f25536",
     functionName: "mint",
     abi: ABI,
     params: { account: currentUserAddress, amount: 1, _metadata: metadata},
@@ -848,7 +848,7 @@ window.updateNft = async function(tokenId, metadataURI){
     web3 = await Moralis.enableWeb3();
     const ABI = nftAbi;
     const options = {
-    contractAddress: "0x804Aa31B21716d59Cf9209C8256A7263096E3218",
+    contractAddress: "0x25D259D4070aD1e2b645a35626dCE39575f25536",
     functionName: "setTokenUri",
     abi: ABI,
     params: { tokenId: tokenId, _uri: metadata},
