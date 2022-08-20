@@ -6,7 +6,7 @@ var serverUrl = "https://hz0syusp3f7e.usemoralis.com:2053/server";
 var appId = "6uPOE7DpOVgMCqJH8vPWwKarQEU7qo2WLBUFky0k";
 var currentChain;
 const nftContractAddress = "0x25D259D4070aD1e2b645a35626dCE39575f25536";
-const marketContractAddress = "0xd9145CCE52D386f254917e481eB44e9943F39138";
+const marketContractAddress = "0xD52330FB6616A9c884EA2273C63dB2569fb260D2";
 Moralis.start({ serverUrl, appId});
 
 window.onload=()=>{
@@ -188,9 +188,11 @@ window.getItemsForSale = async () => {
         // }
         console.log(item);
         let url = fixURL(item.tokenUri);
+		console.log("url",url);
         fetch(url)
         .then(response => response.json())
         .then(data =>{
+			console.log("data",data);
             $("#item-for-sale").append(" \
                 <div class='bg-gray-600 shadow-2xl hover:scale-110 w-[14rem] h-[22rem] my-10 mx-5 rounded-2xl overflow-hidden cursor-pointer'> \
                     <div class=' bg-white h-[222px] w-full overflow-hidden flex justify-center items-center'> \
@@ -203,7 +205,7 @@ window.getItemsForSale = async () => {
                             </div> \
                             <div class='font-semibold text-sm text-[#8a939b]'>Price</div> \
                             <div id='nft-price' class='mt-[-2px] flex items-center text-xl font-bold mt-2'> \
-                                <img src='https://storage.opensea.io/files/6f8e2979d428180222796ff4a33ab929.svg' alt='eth' class='h-5 mr-2' id='nft-image'/> \
+                                <svg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 311.39 507.11'><defs><style>.cls-1{fill:#343434;}.cls-2{fill:#8c8c8c;}.cls-3{fill:#3c3c3b;}.cls-4{fill:#141414;}.cls-5{fill:#393939;}</style></defs><title>ethereum-eth</title><polygon class='cls-1' points='155.65 0 152.25 11.56 152.25 346.87 155.65 350.26 311.3 258.26 155.65 0'></polygon><polygon class='cls-2' points='155.65 0 0 258.26 155.65 350.27 155.65 187.51 155.65 0'></polygon><polygon class='cls-3' points='155.65 379.74 153.73 382.07 153.73 501.52 155.65 507.11 311.39 287.78 155.65 379.74'></polygon><polygon class='cls-2' points='155.65 507.11 155.65 379.73 0 287.78 155.65 507.11'></polygon><polygon class='cls-4' points='155.65 350.26 311.3 258.26 155.65 187.51 155.65 350.26'></polygon><polygon class='cls-5' points='0 258.26 155.65 350.26 155.65 187.51 0 258.26'></polygon></svg> \
                                 <div class='text-[16px]'>"+item.askingPrice+"</div> \
                             </div> \
                             <div class='w-full'> \
@@ -217,6 +219,7 @@ window.getItemsForSale = async () => {
                     </div> \
                 </div>    ");
         }).catch((error)=>{
+			console.log("data",error);
             $("#item-for-sale").append(" \
                 <div class='bg-gray-600 shadow-2xl hover:scale-110 w-[14rem] h-[22rem] my-10 mx-5 rounded-2xl overflow-hidden cursor-pointer'> \
                     <div class='bg-white h-2/3 w-full overflow-hidden flex justify-center items-center'> \
@@ -231,7 +234,7 @@ window.getItemsForSale = async () => {
                             <div class='flex-0.4 text-right'></div>\
                             <div class='font-semibold text-sm text-[#8a939b]'>Price</div> \
                             <div id='nft-price' class='flex items-center text-xl font-bold mt-2'> \
-                                <img src='https://storage.opensea.io/files/6f8e2979d428180222796ff4a33ab929.svg' alt='eth' class='h-5 mr-2' id='nft-image'/> \
+                                <svg id='Layer_1' data-name='Layer 1' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 311.39 507.11'><defs><style>.cls-1{fill:#343434;}.cls-2{fill:#8c8c8c;}.cls-3{fill:#3c3c3b;}.cls-4{fill:#141414;}.cls-5{fill:#393939;}</style></defs><title>ethereum-eth</title><polygon class='cls-1' points='155.65 0 152.25 11.56 152.25 346.87 155.65 350.26 311.3 258.26 155.65 0'></polygon><polygon class='cls-2' points='155.65 0 0 258.26 155.65 350.27 155.65 187.51 155.65 0'></polygon><polygon class='cls-3' points='155.65 379.74 153.73 382.07 153.73 501.52 155.65 507.11 311.39 287.78 155.65 379.74'></polygon><polygon class='cls-2' points='155.65 507.11 155.65 379.73 0 287.78 155.65 507.11'></polygon><polygon class='cls-4' points='155.65 350.26 311.3 258.26 155.65 187.51 155.65 350.26'></polygon><polygon class='cls-5' points='0 258.26 155.65 350.26 155.65 187.51 0 258.26'></polygon></svg> \
                             </div> \
                         </div> \
                     </div> \
@@ -880,7 +883,7 @@ window.approveMarketPlace = async (tokenAddress) => {
             "stateMutability": "nonpayable",
             "type": "function"
         }],
-        params: { operator: "0xd9145CCE52D386f254917e481eB44e9943F39138", approved: true, from: user.get('ethAddress')},
+        params: { operator: "0xD52330FB6616A9c884EA2273C63dB2569fb260D2", approved: true, from: user.get('ethAddress')},
     };
     await Moralis.executeFunction(options);
 }
@@ -915,7 +918,7 @@ window.ensureMarketPlaceIsApproved = async (tokenAddress) => {
             "stateMutability": "view",
             "type": "function"
         }],
-        params: { operator: "0xd9145CCE52D386f254917e481eB44e9943F39138", account: user.get('ethAddress')},
+        params: { operator: "0xD52330FB6616A9c884EA2273C63dB2569fb260D2", account: user.get('ethAddress')},
     };
     if(!await Moralis.executeFunction(options))
     {
@@ -930,7 +933,7 @@ window.listItemForSale = async (tokenId, tokenAddress, askingPrice) => {
     await ensureMarketPlaceIsApproved(tokenAddress).then(async function(){
     web3 = await Moralis.enableWeb3();
     const options = {
-        contractAddress: "0xd9145CCE52D386f254917e481eB44e9943F39138",
+        contractAddress: "0xD52330FB6616A9c884EA2273C63dB2569fb260D2",
         functionName: "addItemToMarket",
         abi: marketPlaceAbi,
         params: { tokenId: tokenId, tokenAddress: tokenAddress, askingPrice: askingPrice, from: user.get('ethAddress')},
@@ -947,7 +950,7 @@ window.buyItem = async (tokenAddress, itemId, askingPrice) => {
     await ensureMarketPlaceIsApproved(tokenAddress).then(async function(){
         web3 = await Moralis.enableWeb3();
         const options = {
-            contractAddress: "0xd9145CCE52D386f254917e481eB44e9943F39138",
+            contractAddress: "0xD52330FB6616A9c884EA2273C63dB2569fb260D2",
             functionName: "buyItem",
             abi: marketPlaceAbi,
             params: { id: itemId},

@@ -15,21 +15,24 @@ Moralis.Cloud.define("getUserItems", async (request) => {
       });
     }
     return results;
-});
+  });
 
-Moralis.Cloud.beforeSave("getItemsForSale", async (request) => {  
-    const query = new Moralis.Query("EthNFTTokenOwners");
-    query.equalTo("token_address", request.object.get('tokenAddress'));
-    query.equalTo("token_id", request.object.get('tokenId'));
-    const object = await query.first();
-    if (object){
-        const owner = object.attributes.owner_of;
-      const userQuery = new Moralis.Query(Moralis.User);
-        userQuery.equalTo("accounts", owner);
-      const userObject = await userQuery.first({useMasterKey:true});
-      if (userObject){
-          request.object.set('user', userObject);
-      }
-      request.object.set('token', object);
+Moralis.Cloud.define("getItemsForSale", async (request) => {
+  
+    const query = new Moralis.Query("ItemsForSale");
+    const queryResults = await query.find();
+    const results = [];
+    for (let i = 0; i < queryResults.length; ++i) {
+      const token_uri_query = new Moralis.Query("EthTokenBalance");
+      token_uri_query.equalTo("token_address", queryResults[i].attributes.tokenAddress);
+      let token_uri = await token_uri_query.find();
+      results.push({
+        "token_objectId": queryResults[i].objectId,
+        "askingPrice": queryResults[i].attributes.askingPrice,
+        "tokenAddress": queryResults[i].attributes.tokenAddress,
+        "uid": queryResults[i].attributes.uid,
+        "token_uri": token_uri[0].attributes.token_uri,
+      });
     }
-});
+    return results;
+  });

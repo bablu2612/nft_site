@@ -16,3 +16,11 @@
  *= require font_awesome5
  *= require font_awesome5_webfont
  */
+
+ #Layer_1{
+     height: 15px;
+ }
+
+div#nft-name {
+    height: 25px;
+}
