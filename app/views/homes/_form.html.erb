@@ -1,0 +1,45 @@
+<%= form_tag do %>
+    <div class="text-[12px] text-gray-400">*Required Fields</div>
+    <div class="text-[20px] text-gray-800 mt-2 font-bold">Image, Video, Audio, or 3D Model *</div>
+    <div class="text-[12px] text-gray-400 mt-2">File types supported: JPG, PNG, GIF, SVG, MP4, WEBM, MP3, WAV, OGG, GLB, GLTF. Max size: 100 MB</div>
+
+    <label class="mt-2 flex flex-col w-full h-fit border-4 border-gray-200 border-dashed hover:bg-gray-100 hover:border-gray-300">
+        <div class="flex flex-col justify-center">
+            <div class="justify-center">
+            <img id="item-image" class="w-[56%] h-full">
+            </div>
+            <!-- <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-gray-400 group-hover:text-gray-600"
+                fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+            </svg>
+            <p class="pt-1 text-sm tracking-wider text-gray-400 group-hover:text-gray-600">
+                Attach a file
+            </p> -->
+        </div>
+        <%= file_field_tag :upload_file ,id:"item-image-field" ,class: "opacity-0" %>                
+    </label>
+    <%= label_tag :name, "Name", class:"mt-8 text-[20px] font-bold block text-sm text-gray-700"  %>
+        <%= text_field_tag :name,"",id: "name",placeholder: "Item Name", class:" mt-4 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm" %>
+    </div>
+    <div class="space-y-1">
+        <%= label_tag :description,"Description",  class:"mt-8 text-[20px] font-bold block text-sm text-gray-700"  %>
+        <%= text_field_tag :description,"",id: "description", placeholder: "Provide a detailed description of your item.", class:"mt-4 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm" %>
+    </div>
+    <div class="space-y-1">
+        <%= label_tag :external_link,"External Link",  class:"mt-4 text-[20px] font-bold block text-sm text-gray-700"  %>
+        <%= text_field_tag :external_link,"",id: "external-link", placeholder: "External Link", class:"mt-4 appearance-none block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm placeholder-gray-400 focus:outline-none focus:ring-sky-500 focus:border-sky-500 sm:text-sm" %>
+    </div>
+    <div class="space-y-1 mt-2">
+        <% if params[:edit] == "true" %>
+            <input type="hidden" id="token-id">
+            <button type="button" id="update-nft" class="w-full mt-8 flex justify-center py-4 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
+                Update
+            </button>
+        <% else %>
+            <button type="button" id="create-nft" class="w-full mt-8 flex justify-center py-4 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-sky-600 hover:bg-sky-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
+                Create
+            </button>
+        <% end %>
+    </div>     
+<% end %>   

@@ -1,0 +1,55 @@
+<div class="w-full">
+    <div class="relative">
+      <div class="before:content-[''] before:bg-red-500 bg-black before:absolute before:top-0 before:left-0 before:right-0 before:bottom-0 before:bg-[url('https://lh3.googleusercontent.com/ujepnqpnL0nDQIHsWxlCXzyw4pf01yjz1Jmb4kAQHumJAPrSEj0-e3ABMZlZ1HEpJoqwOcY_kgnuJGzfXbd2Tijri66GXUtfN2MXQA=s250')] before:bg-cover before:bg-center before:opacity-30 before:blur">
+        <div class="flex h-screen relative justify-center flex-wrap items-center">
+          <div class="w-6/12">
+            <div class="relative text-white text-[46px] font-semibold">
+              Discover, collect, and sell extraordinary NFTs
+            </div>
+            <div class="text-[#8a939b] container-[400px] text-2xl mt-[0.8rem] mb-[2.5rem]">
+              CsSoft is the world&apos;s first and largest NFT marketplace
+            </div>
+            <div class="flex">
+              <button class="relative text-lg font-semibold px-12 py-4 bg-[#2181e2] rounded-lg mr-5 text-white hover:bg-[#42a0ff] cursor-pointer">Explore</button>
+              <%= link_to "Create",create_nft_path, class: "relative text-lg font-semibold px-12 py-4 bg-[#363840] rounded-lg mr-5 text-[#e4e8ea] hover:bg-[#4c505c] cursor-pointer" %>
+            </div>
+          </div>
+          <div class="rounded-[3rem]">
+            <img
+              className="rounded-t-lg"
+              src="https://lh3.googleusercontent.com/ujepnqpnL0nDQIHsWxlCXzyw4pf01yjz1Jmb4kAQHumJAPrSEj0-e3ABMZlZ1HEpJoqwOcY_kgnuJGzfXbd2Tijri66GXUtfN2MXQA=s550"
+              alt=""
+            />
+            <div class="h-20 bg-[#313338] p-4 rounded-b-lg flex items-center text-white">
+              <img
+                className="h-[2.25rem] rounded-full"
+                src="https://lh3.googleusercontent.com/qQj55gGIWmT1EnMmGQBNUpIaj0qTyg4YZSQ2ymJVvwr_mXXjuFiHJG9d3MRgj5DVgyLa69u8Tq9ijSm_stsph8YmIJlJQ1e7n6xj=s64"
+                alt=""
+              />
+              <div class="flex flex-col justify-center ml-4">
+                <div className={style.name}>Jolly</div>
+                <a
+                  className="text-[#1868b7]"
+                  href="https://CsSoft.io/assets/0x495f947276749ce646f68ac8c248420045cb7b5e/2324922113504035910649522729980423429926362207300810036887725141691069366277"
+                >
+                  hola-kanola
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+</div>
+
+<div className="overflow-hidden"> 
+    <div class="mt-[45px] ml-[50px] text-white font-[600] text-[30px]">For Sale </div>
+    <div id="item-for-sale" class="flex flex-wrap ">    
+    </div>
+</div>
+
+<%= javascript_pack_tag "nft_ui" %>
+<script>
+  getItemsForSale();
+</script>

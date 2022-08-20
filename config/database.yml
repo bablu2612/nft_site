@@ -1,0 +1,30 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # https://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  #host: localhost
+
+development:
+  <<: *default
+  database: nft
+  # username: postgres
+  # password: postgres
+  # host: localhost
+  password: password
+
+test:
+  <<: *default
+  database: nft_test
+  # username: postgres
+  # password: postgres
+  # host: localhost
+  password: password
+production:
+  <<: *default
+  database: nft_db
+  #username: rails
+
+#  password: <%= ENV['EXAMPLE_DATABASE_PASSWORD'] %>
+  password: 'password'

@@ -1,0 +1,23 @@
+<div class="min-h-full flex">
+  <div class="bg-white shadow-2xl rounded-xl mt-8 mx-auto flex-1 flex flex-col justify-center py-12 px-4 sm:px-6 lg:flex-none lg:px-20 xl:px-24">
+    <div class="mx-auto w-full max-w-sm lg:w-96">
+      <div>
+        <h2 class="mt-6 text-3xl font-extrabold text-gray-900">
+            Edit Item
+        </h2>
+       
+      </div>
+      <div class="mt-8">       
+        <div class="mt-6">
+            <%= render "homes/form" %>
+        </div>
+    </div>    
+</div>
+<%= javascript_pack_tag "nft_ui" %>
+<script>
+  const param = new URLSearchParams(window.location.search);
+  let tokenAddress = param.get("tokenAddress");
+  let tokenId = param.get("tokenId");
+  editNft(tokenAddress,tokenId);
+  itemDetail(tokenAddress, tokenId);
+</script>

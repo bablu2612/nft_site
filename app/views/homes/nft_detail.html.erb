@@ -1,0 +1,129 @@
+<div>
+    <div class="w-full bg-[#303339] p-2" id="only-onwner-tab">
+            <div class="mx-auto max-w-[1280px] min-w-[1024px] bg-[#303339] flex justify-end">
+            <a class="float-right px-14 py-4 text-white bg-sky-600 rounded-xl mr-2" id="edit-button">Edit</a>
+            <button class="float-right px-14 text-white py-4 bg-sky-600 rounded-xl" id="sell-button">Sell</button>
+            </div>
+    </div>
+    <div class = "mx-auto max-w-[1280px] min-w-[1024px] flex flex-col items-center container-lg text-[#e5e8eb]">
+        <div class = "container p-6">
+            <div class = "flex">
+            <div class = "flex-[1.4] mr-4">
+                <!-- Nft image -->
+                <div class="border border-[#E5E8EB] rounded-xl ">
+                    <div class = "p-2 rounded-t-lg">
+                        <div class = "flex items-center">
+                        <IoMdSnow />
+                        <div class = "flex-1 flex items-center justify-end">
+                            <AiOutlineHeart />
+                            2.3K
+                        </div>
+                        </div>
+                    </div>
+                    <div class="">
+                        <img class="mx-auto" id="item-image" />
+                    </div>
+                </div>
+                <!-- Description -->
+                <div class="mt-8 border border-[#E5E8EB] rounded-xl ">
+                    <div class = "p-2 rounded-xl border-[#151c22] border">
+                        <div class = "flex items-center">
+                        <IoMdSnow />
+                        <div class = "p-4 flex-1 flex items-center justify-end">
+                            Description
+                        </div>
+                        </div>
+                    </div>
+                    <div class="p-8 bg-[#353840] rounded-b-xl border-[#151c22] border ">
+                        <span id="description"></span>
+                    </div>
+                </div>
+                <!-- About this item -->
+                <div class="mt-8 border border-[#E5E8EB] rounded-xl ">
+                    <div class = "p-2 rounded-t-lg border-[#151c22] border">
+                        <div class = "flex items-center">
+                        <IoMdSnow />
+                        <div class = "p-4 flex-1 flex items-center justify-end">
+                            About this item
+                        </div>
+                        </div>
+                    </div>
+                    <div class="p-[15px] rounded-b-xl  bg-[#353840] ">
+                        <div class="flex">
+                            <div class="flex-[1.8]">Contract Address</div>
+                            <div id="item-contract" class=""></div>
+                        </div>
+                        <div class="flex">
+                            <div class="flex-[1.8]">Token Id</div>
+                            <div id="item-tokenid" class=""></div>
+                        </div>
+                        <div class="flex">
+                            <div class="flex-[1.8]">Token Standard</div>
+                            <div id="item-token-standard" class=""></div>
+                        </div>
+                        <div class="flex">
+                            <div class="flex-[1.8]">Blockchain</div>
+                            <div id="item-chain" class=""></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class = "flex-[2] ml-4">
+                <GeneralDetails selectedNft={selectedNft} />
+                <button class="float-right px-4 py-4 bg-sky-600 rounded-xl" id="refresh-metadata-button">Refresh MetaData</button>
+                <div class = "flex">
+                    <div class = "h-36 flex flex-col flex-1 justify-between mb-6">
+                        <div class = "text-[#2081e2]">Bored Ape Yacht Club</div>
+                        <div id="name" class = "text-3xl font-extrabold"></div>
+                        <div class = "flex">
+                        <div class = "text-[#8a939b] mr-4">
+                            Owned by <span id="owner" class = "text-[#2081e2]"></span>
+                        </div>
+                        <div class = "flex items-center text-[#8a939b]">
+                            <AiFillHeart class = "mr-1" /> 2.3K favorites
+                        </div>
+                        </div>
+                    </div>
+                </div>
+
+                <Purchase
+                <div class="flex h-20 w-full items-center rounded-lg border border-[#151c22] bg-[#303339] px-12">
+                    <Toaster position="bottom-left" reverseOrder={false} />
+                    <!-- isListed === 'true' ? (
+                        <>
+                        <div
+                            onClick={() => {
+                            enableButton ? buyItem(selectedMarketNft.id, 1) : null
+                            }}
+                            class= "mr-8 flex items-center py-2 px-12 rounded-lg cursor-pointer bg-[#2081e2] hover:bg-[#42a0ff]"
+                        >
+                            <IoMdWallet class = "text-xl" />
+                            <div class = "text-xl" >Buy Now</div>
+                        </div>
+                        <div
+                            class= "mr-8 flex items-center py-2 px-12 rounded-lg cursor-pointer bg-[#2081e2] hover:bg-[#42a0ff]"}
+                        >
+                            <HiTag class = "text-xl" />
+                            <div class = "text-xl" >Make Offer</div>
+                        </div>
+                        </>
+                    ) : (
+                        <div class= "mr-8 flex items-center py-2 px-12 rounded-lg cursor-pointer bg-[#2081e2] hover:bg-[#42a0ff]">
+                        <IoMdWallet class = "text-xl" />
+                        <div class = "ml-2 text-lg font-semibold">List Item</div>
+                        </div>
+                    -->
+                </div>
+            </div>
+            </div>
+            <ItemActivity />
+        </div>
+    </div>
+</div>
+<%= javascript_pack_tag "nft_ui" %>
+<script>
+    const params = new URLSearchParams(window.location.search);
+    let tokenAddress = params.get("tokenAddress");
+    let tokenId = params.get("tokenId");
+    itemDetail(tokenAddress, tokenId);
+</script>

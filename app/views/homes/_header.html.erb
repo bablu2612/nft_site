@@ -1,0 +1,36 @@
+<div class="bg-[#04111d] w-screen px-[1.2rem] py-[0.8rem] flex">
+      <a href="/">
+        <div class="flex items-center cursor-pointer">
+          <img src=<%= image_url("opensea.png")%> height=40 width=40 />
+          <div class="ml-[0.8rem] text-white font-semibold text-2xl">CsSoft</div>
+        </div>
+      </a>
+      <div class="flex flex-1 mx-[0.8rem] w-max-[520px] items-center bg-[#363840] rounded-[0.8rem] hover:bg-[#4c505c]">
+        <div class="text-[#8a939b] mx-3 font-bold text-lg">
+          
+        </div>
+        <input class="h-[2.6rem] w-full border-0 bg-transparent outline-0 ring-0 px-2 pl-0 text-[#e6e8eb] placeholder:text-[#8a939b]"
+          placeholder="Search items, collections, and accounts"
+        />
+      </div>
+      <div class="flex items-center justify-end">
+        <%= link_to nft_collection_path do %>
+          <div class="text-white px-4 font-bold text-[#c8cacd] hover:text-white cursor-pointer"> Collections </div>
+        <% end %>
+        <div class="text-white px-4 font-bold text-[#c8cacd] hover:text-white cursor-pointer"> Stats </div>
+        <div class="text-white px-4 font-bold text-[#c8cacd] hover:text-white cursor-pointer"> Resources </div>
+        <%= link_to create_nft_path do %>
+          <div class="text-white px-4 font-bold text-[#c8cacd] hover:text-white cursor-pointer"> Create </div>
+        <% end %>
+        <%= link_to profile_path,id: "profile" do %>
+          <div class="text-white px-4 font-bold text-[#c8cacd] hover:text-white cursor-pointer"> Profile </div>
+        <% end %>
+        <button type="button" id="btnConnect" class="text-white px-4 font-bold text-[#c8cacd] hover:text-white cursor-pointer text-[30px]">
+            <%= fa_icon('wallet',type: :solid, class: "fd") %>
+        </button>
+        <button id="btnLogout" class="text-white px-4 font-bold text-[#c8cacd] hover:text-white cursor-pointer"> Logout </button>
+        <div class="text-[#8a939b] text-3xl font-black px-4 hover:text-white cursor-pointer">
+         
+        </div>
+      </div>
+    </div>
